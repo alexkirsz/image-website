@@ -1,0 +1,28 @@
+{
+  "name": "image-website",
+  "private": true,
+  "description": "The website of the IMAGE specialization at EPITA.",
+  "version": "1.0.0",
+  "author": "Alexandre Kirszenberg <alexandre.kirszenberg@epita.fr>",
+  "dependencies": {
+    "gatsby": "^2.0.117",
+    "gatsby-image": "^2.0.29",
+    "gatsby-plugin-manifest": "^2.0.17",
+    "gatsby-plugin-offline": "^2.0.23",
+    "gatsby-plugin-react-helmet": "^3.0.6",
+    "gatsby-plugin-sharp": "^2.0.20",
+    "gatsby-source-filesystem": "^2.0.20",
+    "gatsby-transformer-sharp": "^2.1.13",
+    "prop-types": "^15.6.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-helmet": "^5.2.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "yarn run develop",
+    "serve": "gatsby serve"
+  }
+}
