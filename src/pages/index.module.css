@@ -8,10 +8,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 1rem;
 }
 
 .welcome {
-  margin: 2rem 0;
-  font-size: 2rem;
+  margin: 2rem 0 0;
+  font-size: 1.4rem;
   font-weight: 300;
+  text-align: center;
 }

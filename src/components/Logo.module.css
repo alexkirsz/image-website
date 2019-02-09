@@ -1,6 +1,7 @@
 .container {
-  width: 512px;
-  height: 512px;
+  position: relative;
+  width: 400px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,15 +9,15 @@
 
 .logo {
   position: absolute;
-  width: 512px;
-  height: 512px;
+  width: 100%;
+  height: 100%;
 }
 
 .title {
   position: relative;
   color: black;
   z-index: 1;
-  font-size: 110px;
+  font-size: 80px;
   font-family: Unica One, sans-serif;
   text-transform: lowercase;
 }
