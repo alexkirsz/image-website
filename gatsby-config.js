@@ -4,6 +4,7 @@ module.exports = {
     description: `Le site web de la majeure IMAGE d'EPITA.`
   },
   plugins: [
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -23,7 +24,7 @@ module.exports = {
         background_color: `#FFFFFF`,
         theme_color: `#FFFFFF`,
         display: `minimal-ui`,
-        icon: `resources/logo.svg`
+        icon: `src/images/logo_clear.svg`
       }
     }
   ]

@@ -1,0 +1,22 @@
+.container {
+  width: 512px;
+  height: 512px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  position: absolute;
+  width: 512px;
+  height: 512px;
+}
+
+.title {
+  position: relative;
+  color: black;
+  z-index: 1;
+  font-size: 110px;
+  font-family: Unica One, sans-serif;
+  text-transform: lowercase;
+}
