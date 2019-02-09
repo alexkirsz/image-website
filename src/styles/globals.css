@@ -5,7 +5,15 @@ body {
   font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
     sans-serif;
   font-size: 18px;
-  width: 100%;
   height: 100%;
   color: #303030;
+}
+
+#___gatsby,
+#___gatsby > div {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
 }
