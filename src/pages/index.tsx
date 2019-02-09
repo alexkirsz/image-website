@@ -2,7 +2,7 @@ import React from "react";
 
 import Meta from "@/components/Meta";
 import Layout from "@/components/Layout";
-import Logo from "@/components/Logo";
+import AnimatedLogo from "@/components/AnimatedLogo";
 
 const styles = require("./index.module.css");
 
@@ -11,7 +11,7 @@ export default function IndexPage() {
     <Layout>
       <Meta title="Accueil" />
       <div className={styles.landing}>
-        <Logo />
+        <AnimatedLogo className={styles.logo} />
         <p className={styles.welcome}>
           Bienvenue sur le site de la majeure IMAGE !
         </p>

@@ -132,6 +132,19 @@ export default function AnimatedLogo(props: React.SVGProps<SVGSVGElement>) {
       <use xlinkHref="#red" fill={YELLOW} clipPath="url(#greenClip)" />
       <use xlinkHref="#green" fill={CYAN} clipPath="url(#blueClip)" />
       <use xlinkHref="#blue" fill="white" clipPath="url(#whiteClip)" />
+
+      <text
+        y="57px"
+        x="50%"
+        style={{
+          textAnchor: "middle",
+          fontSize: 21,
+          fontFamily: "Unica One",
+          textTransform: "lowercase"
+        }}
+      >
+        IMAGE
+      </text>
     </svg>
   );
 }

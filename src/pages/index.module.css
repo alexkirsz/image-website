@@ -11,7 +11,17 @@
   margin: 1rem;
 }
 
+.logo {
+  flex-shrink: 0;
+  max-width: 400px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .welcome {
+  flex-shrink: 0;
   margin: 2rem 0 0;
   font-size: 1.4rem;
   font-weight: 300;
