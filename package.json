@@ -5,9 +5,9 @@
   "version": "1.0.0",
   "author": "Alexandre Kirszenberg <alexandre.kirszenberg@epita.fr>",
   "dependencies": {
-    "@material-ui/core": "^3.9.2",
-    "@material-ui/icons": "^3.0.2",
-    "@material-ui/styles": "^3.0.0-alpha.10",
+    "@material-ui/core": "4.0.0-alpha.0",
+    "@material-ui/icons": "4.0.0-alpha.0",
+    "@material-ui/styles": "4.0.0-alpha.0",
     "@types/classnames": "^2.2.7",
     "@types/node": "^10.12.23",
     "@types/react": "^16.8.2",
@@ -19,7 +19,7 @@
     "eslint": "^5.13.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.12.4",
-    "gatsby": "^2.0.117",
+    "gatsby": "^2.0.119",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-manifest": "^2.0.17",
     "gatsby-plugin-react-helmet": "^3.0.6",
@@ -34,15 +34,14 @@
     "react-dom": "^16.8.0",
     "react-helmet": "^5.2.0",
     "react-jss": "^8.6.1",
-    "ts-node": "^8.0.2",
     "typescript": "^3.3.3"
   },
   "license": "MIT",
   "scripts": {
-    "build": "ts-node node_modules/.bin/gatsby build",
-    "develop": "ts-node node_modules/.bin/gatsby develop",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
     "start": "yarn run develop",
-    "serve": "ts-node node_modules/.bin/gatsby serve",
+    "serve": "gatsby serve",
     "type-check": "tsc --noEmit",
     "lint": "tslint --project ."
   }

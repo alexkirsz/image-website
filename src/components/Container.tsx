@@ -6,9 +6,9 @@ import classNames from "classnames";
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     margin: "0 auto",
-    paddingLeft: theme.spacing.unit * 4,
-    paddingRight: theme.spacing.unit * 4,
-    maxWidth: 1400 - theme.spacing.unit * 4,
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    maxWidth: 1400 - (theme.spacing(4) as number),
   },
 }));
 

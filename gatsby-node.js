@@ -1,6 +1,6 @@
-import path from "path";
+const path = require("path");
 
-export function onCreateWebpackConfig({ actions }: { actions: any }) {
+exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       alias: {
@@ -8,4 +8,4 @@ export function onCreateWebpackConfig({ actions }: { actions: any }) {
       },
     },
   });
-}
+};

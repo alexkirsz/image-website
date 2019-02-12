@@ -22,46 +22,46 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: 64,
   },
   heroContent1: {
-    minHeight: theme.spacing.unit * 48,
-    paddingTop: theme.spacing.unit * 16,
-    paddingBottom: theme.spacing.unit * 16,
+    minHeight: theme.spacing(28),
+    paddingTop: theme.spacing(16),
+    paddingBottom: theme.spacing(16),
     display: "flex",
     alignItems: "center",
     [theme.breakpoints.down("md")]: {
-      paddingTop: theme.spacing.unit * 8,
-      paddingBottom: theme.spacing.unit * 8,
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(8),
     },
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
     },
   },
   heroContent2: {
-    paddingTop: theme.spacing.unit * 12,
-    paddingBottom: theme.spacing.unit * 12,
+    paddingTop: theme.spacing(12),
+    paddingBottom: theme.spacing(12),
     display: "flex",
     flexDirection: "column",
     [theme.breakpoints.down("md")]: {
-      paddingTop: theme.spacing.unit * 8,
-      paddingBottom: theme.spacing.unit * 8,
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(8),
     },
   },
   spacer: {
-    width: theme.spacing.unit * 4,
+    width: theme.spacing(4),
   },
   logo: {
     height: 256,
 
     [theme.breakpoints.down("md")]: {
-      marginBottom: theme.spacing.unit * 4,
+      marginBottom: theme.spacing(4),
     },
   },
   description: {},
   avatar: {
     height: 128,
     width: 128,
-    marginTop: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   cardContent: {
     display: "flex",
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   geniuses: {
-    marginBottom: theme.spacing.unit * 6,
+    marginBottom: theme.spacing(6),
   },
 }));
 
@@ -107,12 +107,14 @@ export default function HomePage() {
             Les grands esprits au volant
           </Typography>
 
-          <Grid container spacing={24}>
+          <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Card elevation={0}>
                 <CardActionArea
                   component="a"
-                  href="https://www.lrde.epita.fr/wiki/User:Elodie"
+                  {...{
+                    href: "https://www.lrde.epita.fr/wiki/User:Elodie",
+                  } as any}
                 >
                   <div className={styles.cardContent}>
                     <Avatar
@@ -137,7 +139,9 @@ export default function HomePage() {
               <Card elevation={0}>
                 <CardActionArea
                   component="a"
-                  href="https://www.lrde.epita.fr/wiki/User:Gtochon"
+                  {...{
+                    href: "https://www.lrde.epita.fr/wiki/User:Gtochon",
+                  } as any}
                 >
                   <div className={styles.cardContent}>
                     <Avatar

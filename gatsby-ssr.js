@@ -1,3 +1,5 @@
+import "./bootstrap";
+
 import React from "react";
 import { SheetsRegistry } from "jss";
 import {
@@ -5,21 +7,13 @@ import {
   createGenerateClassName,
   ThemeProvider,
 } from "@material-ui/styles";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
-
+import { createMuiTheme, CssBaseline } from "@material-ui/core";
 import theme from "@/theme";
 import Layout from "@/components/Layout";
 
 const sheetsRegistryMap = new Map();
 
-export function wrapRootElement({
-  element,
-  pathname,
-}: {
-  element: React.ReactNode;
-  pathname: string;
-}) {
+export const wrapRootElement = ({ element, pathname }) => {
   const generateClassName = createGenerateClassName();
 
   const sheetsRegistry = new SheetsRegistry();
@@ -31,23 +25,17 @@ export function wrapRootElement({
       sheetsRegistry={sheetsRegistry}
       sheetsManager={new Map()}
     >
-      <MuiThemeProvider theme={createMuiTheme(theme)}>
-        <ThemeProvider theme={createMuiTheme(theme)}>
-          <CssBaseline />
-          <Layout>{element}</Layout>
-        </ThemeProvider>
-      </MuiThemeProvider>
+      <ThemeProvider theme={createMuiTheme(theme)}>
+        {/* <MuiThemeProvider theme={createMuiTheme(theme)}> */}
+        <CssBaseline />
+        <Layout>{element}</Layout>
+        {/* </MuiThemeProvider> */}
+      </ThemeProvider>
     </StylesProvider>
   );
-}
+};
 
-export function onRenderBody({
-  setHeadComponents,
-  pathname,
-}: {
-  setHeadComponents: (elts: Array<React.ReactNode>) => void;
-  pathname: string;
-}) {
+export const onRenderBody = ({ setHeadComponents, pathname }) => {
   const sheetsRegistry = sheetsRegistryMap.get(pathname);
 
   if (sheetsRegistry) {
@@ -62,4 +50,4 @@ export function onRenderBody({
 
     sheetsRegistryMap.delete(pathname);
   }
-}
+};

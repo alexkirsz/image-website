@@ -19,7 +19,7 @@ import MenuIcon from "@material-ui/icons/MenuTwoTone";
 import PeopleIcon from "@material-ui/icons/PeopleTwoTone";
 import HomeIcon from "@material-ui/icons/HomeTwoTone";
 import ClassIcon from "@material-ui/icons/ClassTwoTone";
-import { Link, GatsbyLinkProps } from "gatsby";
+import { Link } from "gatsby";
 import { TabProps } from "@material-ui/core/Tab";
 import { Location } from "@reach/router";
 import Container from "@/components/Container";
@@ -125,8 +125,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   top: {
     display: "flex",
     alignItems: "center",
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     justifyContent: "center",
   },
   logoContainer: {
@@ -139,9 +139,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   logoSpacer: {
-    width: theme.spacing.unit * 3,
+    width: theme.spacing(3),
     [theme.breakpoints.down("xs")]: {
-      width: theme.spacing.unit * 2,
+      width: theme.spacing(2),
     },
   },
   logoText: {
@@ -159,11 +159,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignSelf: "center",
   },
   contactIcon: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   menuIcon: {
     position: "absolute",
-    left: theme.spacing.unit * 2,
+    left: theme.spacing(2),
   },
 }));
 

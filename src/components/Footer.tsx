@@ -5,8 +5,8 @@ import Container from "@/components/Container";
 
 const useStyles = makeStyles((theme: Theme) => ({
   footer: {
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     backgroundColor: theme.palette.grey[100],
   },
   footerContent: {

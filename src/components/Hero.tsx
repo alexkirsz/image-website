@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from "react";
 import Container from "@/components/Container";
 import theme from "@/theme";
-import createMuiTheme, { Theme } from "@material-ui/core/styles/createMuiTheme";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { MuiThemeProvider } from "@material-ui/core";
 
 export const darkTheme = createMuiTheme({
