@@ -1,9 +1,42 @@
 import React, { ReactNode } from "react";
 import Helmet from "react-helmet";
+import { makeStyles } from "@material-ui/styles";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-require("@/styles/globals.css");
+const useStyles = makeStyles((theme: Theme) => ({
+  "@global": {
+    "html, body": {
+      height: "100%",
+      [theme.breakpoints.down("xs")]: {
+        fontSize: 14,
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: 18,
+      },
+    },
 
-export default function Layout({ children }: { children: ReactNode }) {
+    "#___gatsby, #___gatsby > div": {
+      height: "100%",
+    },
+  },
+
+  root: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  main: {
+    flexGrow: 1,
+    flexShrink: 0,
+    overflowY: "auto",
+  },
+}));
+
+export default function Layout({ children }: { children?: ReactNode }) {
+  const styles = useStyles();
+
   return (
     <>
       <Helmet>
@@ -12,16 +45,16 @@ export default function Layout({ children }: { children: ReactNode }) {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
         />
         <link
-          href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600"
           rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Unica+One"
-          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500"
         />
       </Helmet>
 
-      {children}
+      <div className={styles.root}>
+        <Header />
+        <main className={styles.main}>{children}</main>
+        <Footer />
+      </div>
     </>
   );
 }

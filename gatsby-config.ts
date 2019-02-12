@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `IMAGE`,
-    description: `Le site web de la majeure IMAGE d'EPITA.`
+    description: `Le site web de la majeure IMAGE d'EPITA.`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -10,8 +10,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/images`,
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -24,8 +24,8 @@ module.exports = {
         background_color: `#FFFFFF`,
         theme_color: `#FFFFFF`,
         display: `minimal-ui`,
-        icon: `src/images/logo_clear.svg`
-      }
-    }
-  ]
+        icon: `src/images/logo_clear.svg`,
+      },
+    },
+  ],
 };

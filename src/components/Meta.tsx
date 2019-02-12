@@ -17,7 +17,7 @@ export default function Meta({ title }: { title: string }) {
       render={data => (
         <Helmet
           htmlAttributes={{
-            lang: "fr"
+            lang: "fr",
           }}
           title={title}
           titleTemplate={`%s | ${data.site.siteMetadata.title}`}
