@@ -1,42 +1,16 @@
 import React from "react";
-import {
-  Grid,
-  Card,
-  CardActionArea,
-  CardContent,
-  Typography,
-  Theme,
-  IconButton,
-} from "@material-ui/core";
-import { graphql, Link } from "gatsby";
+import { Grid } from "@material-ui/core";
+import { graphql } from "gatsby";
 import { StudentFragment } from "@/types/StudentFragment";
+import Picture from "@/components/Picture";
+import PersonCard from "@/components/PersonCard";
 import { makeStyles } from "@material-ui/styles";
-import Image from "gatsby-image";
-import MoreIcon from "@material-ui/icons/MoreHorizTwoTone";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  avatar: {
-    borderRadius: 96 / 2,
-    flexShrink: 0,
-    marginTop: theme.spacing(2),
-    marginLeft: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+const useStyles = makeStyles({
+  card: {
+    height: "100%",
   },
-  cardContent: {
-    position: "relative",
-    display: "flex",
-    alignItems: "center",
-    [theme.breakpoints.down("xs")]: {
-      flexDirection: "column",
-      alignItems: "center",
-    },
-  },
-  more: {
-    position: "absolute",
-    right: theme.spacing(2),
-    bottom: theme.spacing(2),
-  },
-}));
+});
 
 export default function PeopleGrid({
   class: class_,
@@ -52,35 +26,18 @@ export default function PeopleGrid({
       {people.map(person => {
         return (
           <Grid key={person.id} item xs={12} sm={6} md={4}>
-            <Card elevation={1}>
-              <CardActionArea
-                component={Link}
-                {...{
-                  to: `/students/${class_}/${person.fields!.slug}`,
-                } as any}
-              >
-                <div className={styles.cardContent}>
-                  <Image
-                    className={styles.avatar}
-                    fixed={
-                      person.frontmatter!.picture!.childImageSharp!
-                        .fixed! as any
-                    }
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5">
-                      {person.frontmatter!.firstName}{" "}
-                      {person.frontmatter!.lastName}
-                    </Typography>
-                    <Typography>{person.frontmatter.headline}</Typography>
-                  </CardContent>
-
-                  <IconButton classes={{ root: styles.more }}>
-                    <MoreIcon fontSize="small" />
-                  </IconButton>
-                </div>
-              </CardActionArea>
-            </Card>
+            <PersonCard
+              className={styles.card}
+              to={`/students/${class_}/${person.fields!.slug!}`}
+              picture={
+                <Picture
+                  picture={person.frontmatter!.picture!.childImageSharp!.fixed!}
+                />
+              }
+              title={`${person.frontmatter!.firstName!} ${person.frontmatter!
+                .lastName!}`}
+              content={person.frontmatter!.headline!}
+            />
           </Grid>
         );
       })}

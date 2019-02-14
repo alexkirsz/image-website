@@ -21,6 +21,7 @@ import LaunchIcon from "@material-ui/icons/LaunchTwoTone";
 import Twitter from "mdi-material-ui/Twitter";
 import Linkedin from "mdi-material-ui/Linkedin";
 import GithubFace from "mdi-material-ui/GithubFace";
+import Picture from "@/components/Picture";
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero: {
@@ -34,14 +35,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     flexWrap: "wrap",
     [theme.breakpoints.down("sm")]: {
-      justifyContent: "center",
+      flexDirection: "column",
     },
   },
-  avatar: {
-    borderRadius: 192 / 2,
-    marginRight: theme.spacing(4),
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+  heroSpacer: {
+    width: theme.spacing(4),
+    height: theme.spacing(2),
   },
   headContent: {
     display: "flex",
@@ -107,12 +106,11 @@ export default function StudentPage({
         }
       >
         <div className={styles.heroContent}>
-          <Image
-            className={styles.avatar}
-            fixed={
-              data.student.frontmatter!.picture!.childImageSharp!.fixed as any
-            }
+          <Picture
+            picture={data.student.frontmatter!.picture!.childImageSharp!.fixed!}
           />
+
+          <div className={styles.heroSpacer} />
 
           <div
             className={classNames(

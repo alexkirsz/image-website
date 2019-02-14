@@ -96,7 +96,7 @@ export default function ClassPage({
       </Hero>
 
       <div className={styles.background}>
-        <Container className={styles.container}>
+        <Container>
           <StudentGrid
             class={pageContext.class}
             people={data.allStudent!.edges!.map(edge => edge!.node!)}
