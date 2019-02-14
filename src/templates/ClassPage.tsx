@@ -35,15 +35,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
   },
   promotionInput: {
-    marginTop: theme.spacing(2),
     width: 100,
   },
   selectIcon: {
     color: "inherit",
   },
-  background: {
+  content: {
     flex: 1,
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
   },
 }));
 
@@ -95,7 +95,7 @@ export default function ClassPage({
         </div>
       </Hero>
 
-      <div className={styles.background}>
+      <div className={styles.content}>
         <Container>
           <StudentGrid
             class={pageContext.class}
