@@ -138,7 +138,7 @@ export default function StudentPage({
       <div className={styles.description}>
         <Container>
           <Grid container spacing={2}>
-            <Grid item sm={12} md={9}>
+            <Grid item xs={12} md={9}>
               <Typography variant="subtitle2" color="textSecondary">
                 À propos
               </Typography>
@@ -148,7 +148,7 @@ export default function StudentPage({
               />
             </Grid>
 
-            <Grid item sm={12} md={3}>
+            <Grid item xs={12} md={3}>
               <Typography
                 variant="subtitle2"
                 color="textSecondary"
