@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   background: {
     flex: 1,
     paddingTop: theme.spacing(2),
+    backgroundColor: theme.palette.grey[100],
   },
 }));
 
