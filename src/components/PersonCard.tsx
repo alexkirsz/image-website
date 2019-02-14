@@ -108,6 +108,8 @@ export default function PersonCard({
         {htmlContent && (
           <Typography
             classes={{ root: styles.htmlContent }}
+            // Otherwise the content disappears on refresh.
+            component="div"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
         )}

@@ -7,23 +7,19 @@ import Helmet from "react-helmet-async";
 
 const useStyles = makeStyles((theme: Theme) => ({
   "@global": {
-    "html, body": {
-      height: "100%",
+    html: {
       [theme.breakpoints.down("xs")]: {
         fontSize: 14,
       },
       [theme.breakpoints.up("sm")]: {
         fontSize: 18,
       },
-    },
-
-    "#___gatsby, #___gatsby > div": {
-      height: "100%",
+      overflow: "auto",
     },
   },
 
   root: {
-    height: "100%",
+    minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
   },

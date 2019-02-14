@@ -144,6 +144,8 @@ export default function StudentPage({
               </Typography>
               <Typography
                 variant="body1"
+                // Otherwise the content disappears on refresh.
+                component="div"
                 dangerouslySetInnerHTML={{ __html: data.student.html! }}
               />
             </Grid>
