@@ -41,6 +41,8 @@ export interface StudentPageQuery_student_frontmatter_background_childImageSharp
   aspectRatio: number | null;
   src: string | null;
   srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
   sizes: string | null;
 }
 
