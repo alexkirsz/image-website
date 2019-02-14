@@ -9,11 +9,10 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { graphql, Link } from "gatsby";
-import { PersonFragment } from "./types/PersonFragment";
+import { StudentFragment } from "@/types/StudentFragment";
 import { makeStyles } from "@material-ui/styles";
 import Image from "gatsby-image";
 import MoreIcon from "@material-ui/icons/MoreHorizTwoTone";
-import color from "color";
 
 const useStyles = makeStyles((theme: Theme) => ({
   avatar: {
@@ -44,7 +43,7 @@ export default function PeopleGrid({
   people,
 }: {
   class: number;
-  people: Array<PersonFragment>;
+  people: Array<StudentFragment>;
 }) {
   const styles = useStyles();
 
@@ -90,7 +89,7 @@ export default function PeopleGrid({
 }
 
 export const query = graphql`
-  fragment PersonFragment on Student {
+  fragment StudentFragment on Student {
     id
     fields {
       slug

@@ -14,7 +14,7 @@ import { makeStyles } from "@material-ui/styles";
 import ReactDOM from "react-dom";
 import Container from "@/components/Container";
 import { graphql, Link } from "gatsby";
-import { ClassPageQuery } from "./types/ClassPageQuery";
+import { ClassPageQuery } from "@/types/ClassPageQuery";
 import StudentGrid from "@/components/StudentGrid";
 
 const useStyles = makeStyles((theme: Theme) => ({

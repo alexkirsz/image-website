@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import { makeStyles } from "@material-ui/styles";
 import AnimatedLogo from "@/components/AnimatedLogo";
 import { graphql } from "gatsby";
-import { IndexQuery } from "./types/IndexQuery";
+import { IndexQuery } from "@/types/IndexQuery";
 import TeacherGrid from "@/components/TeacherGrid";
 
 const useStyles = makeStyles((theme: Theme) => ({

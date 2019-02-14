@@ -9,7 +9,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { graphql, Link } from "gatsby";
-import { TeacherFragment } from "./types/TeacherFragment";
+import { TeacherFragment } from "@/types/TeacherFragment";
 import { makeStyles } from "@material-ui/styles";
 import Image from "gatsby-image";
 import MoreIcon from "@material-ui/icons/MoreHorizTwoTone";

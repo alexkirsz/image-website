@@ -49,6 +49,6 @@
     "serve": "gatsby serve",
     "type-check": "tsc --noEmit",
     "lint": "tslint --project .",
-    "generate-types": "apollo client:codegen --localSchemaFile=./schema.json --target=typescript --includes=\"{node_modules/gatsby-transformer-sharp/src/fragments.js,src/**/*.{ts,tsx}}\" --tagName=graphql --globalTypesFile=src/types/graphql.d.ts types && rm -rf types"
+    "generate-types": "apollo client:codegen --localSchemaFile=./schema.json --target=typescript --includes=\"{node_modules/gatsby-transformer-sharp/src/fragments.js,src/**/*.{ts,tsx}}\" --tagName=graphql --globalTypesFile=src/types/graphql.d.ts --outputFlat src/types && rm -rf types"
   }
 }

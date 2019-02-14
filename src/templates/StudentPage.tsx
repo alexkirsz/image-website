@@ -1,7 +1,7 @@
 import React from "react";
 import Meta from "@/components/Meta";
 import { graphql } from "gatsby";
-import { StudentPageQuery } from "./types/StudentPageQuery";
+import { StudentPageQuery } from "@/types/StudentPageQuery";
 import Hero from "@/components/Hero";
 import {
   Typography,
