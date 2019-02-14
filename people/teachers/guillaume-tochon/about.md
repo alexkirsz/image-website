@@ -1,5 +1,5 @@
 ---
-firstName: Guillaune
+firstName: Guillaume
 lastName: Tochon
 website: https://www.lrde.epita.fr/wiki/User:Gtochon
 picture: ./picture.jpg
