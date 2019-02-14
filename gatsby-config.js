@@ -5,12 +5,39 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `students`,
+        path: `${__dirname}/people/students`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `teachers`,
+        path: `${__dirname}/people/teachers`,
+      },
+    },
+    {
+      resolve: `@alexkirsz/gatsby-transformer-remark`,
+      options: {
+        filter: node => node.sourceInstanceName === "students",
+        type: "Student",
+      },
+    },
+    {
+      resolve: `@alexkirsz/gatsby-transformer-remark`,
+      options: {
+        filter: node => node.sourceInstanceName === "teachers",
+        type: "Teacher",
       },
     },
     `gatsby-transformer-sharp`,
@@ -25,6 +52,12 @@ module.exports = {
         theme_color: `#FFFFFF`,
         display: `minimal-ui`,
         icon: `src/images/logo_clear.svg`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-extract-schema",
+      options: {
+        dest: `${__dirname}/schema.json`,
       },
     },
   ],

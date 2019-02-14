@@ -1,25 +1,18 @@
 import React from "react";
 import Meta from "@/components/Meta";
-import {
-  Typography,
-  Theme,
-  Grid,
-  Paper,
-  Card,
-  Avatar,
-  CardActionArea,
-  CardContent,
-} from "@material-ui/core";
+import { Typography, Theme } from "@material-ui/core";
 import Hero from "@/components/Hero";
 import { makeStyles } from "@material-ui/styles";
 import AnimatedLogo from "@/components/AnimatedLogo";
-import OpenInNewIcon from "@material-ui/icons/OpenInNewTwoTone";
+import { graphql } from "gatsby";
+import { IndexQuery } from "./types/IndexQuery";
+import TeacherGrid from "@/components/TeacherGrid";
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero1: {
     // From https://www.heropatterns.com/
     backgroundImage: `url("${require("@/images/diamonds_pattern.svg")}")`,
-    backgroundSize: 64,
+    backgroundSize: 80,
   },
   heroContent1: {
     minHeight: theme.spacing(28),
@@ -76,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function HomePage() {
+export default function HomePage({ data }: { data: IndexQuery }) {
   const styles = useStyles();
 
   return (
@@ -107,6 +100,10 @@ export default function HomePage() {
             Les grands esprits au volant
           </Typography>
 
+          <TeacherGrid
+            teachers={data.allTeacher!.edges!.map(edge => edge!.node!)}
+          />
+          {/*
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Card elevation={0}>
@@ -162,9 +159,26 @@ export default function HomePage() {
                 </CardActionArea>
               </Card>
             </Grid>
-          </Grid>
+          </Grid> */}
         </div>
       </Hero>
     </>
   );
 }
+
+export const query = graphql`
+  query IndexQuery {
+    allTeacher(
+      sort: {
+        fields: [frontmatter___lastName, frontmatter___firstName]
+        order: [ASC, ASC]
+      }
+    ) {
+      edges {
+        node {
+          ...TeacherFragment
+        }
+      }
+    }
+  }
+`;

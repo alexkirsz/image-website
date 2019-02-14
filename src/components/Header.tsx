@@ -25,11 +25,13 @@ import { Location } from "@reach/router";
 import Container from "@/components/Container";
 import { unstable_useMediaQuery as useMediaQuery } from "@material-ui/core/useMediaQuery";
 import { ListItemProps } from "@material-ui/core/ListItem";
+import classNames from "classnames";
+import color from "color";
 
 type MenuItem = {
   label: React.ReactNode;
   to: string;
-  icon: React.ComponentType<{}>;
+  icon: React.ComponentType<{ className?: string }>;
 };
 
 const useTabStyles = makeStyles((theme: Theme) => ({
@@ -51,34 +53,107 @@ function TabLink({ to, ...otherProps }: { to: string } & TabProps) {
   );
 }
 
+const useMenuButtonStyles = makeStyles((theme: Theme) => ({
+  menuContainer: {
+    display: "flex",
+    paddingBottom: theme.spacing(1),
+  },
+  menuFill: {
+    flexGrow: 1,
+  },
+  buttonRoot: {
+    textTransform: "none",
+    fontWeight: 400,
+    color: theme.palette.primary.dark,
+    marginRight: theme.spacing(1),
+    "&:hover": {
+      backgroundColor: color(theme.palette.primary.dark)
+        .alpha(0.08)
+        .toString(),
+    },
+  },
+  buttonIcon: {
+    marginRight: theme.spacing(1),
+  },
+  buttonLast: {
+    marginRight: 0,
+  },
+  buttonActive: {
+    boxShadow: `0px 0px 0px 1px ${color(theme.palette.primary.dark).alpha(
+      0.25,
+    )}`,
+  },
+}));
+
 function Menu({ items }: { items: Array<MenuItem> }) {
+  const styles = useMenuButtonStyles();
+
   return (
-    <Location>
-      {({ location }) => (
-        <Tabs
-          indicatorColor="primary"
-          // Note that in the case no item matches, the first item will be
-          // selected by default.
-          value={
-            items.reduce((longestMatch, item) =>
-              location.pathname.includes(item.to) &&
-              item.to.length > longestMatch.to.length
-                ? item
-                : longestMatch,
-            ).to
-          }
-        >
-          {items.map(item => (
-            <TabLink
+    <div className={styles.menuContainer}>
+      <Location>
+        {({ location }) => {
+          const activeMenuButton = items.reduce((longestMatch, item) =>
+            location.pathname.includes(item.to) &&
+            item.to.length > longestMatch.to.length
+              ? item
+              : longestMatch,
+          ).to;
+
+          return items.map((item, idx) => (
+            <Button
               key={item.to}
-              value={item.to}
-              label={item.label}
-              to={item.to}
-            />
-          ))}
-        </Tabs>
-      )}
-    </Location>
+              classes={{
+                root: classNames(
+                  styles.buttonRoot,
+                  activeMenuButton === item.to && styles.buttonActive,
+                  idx === items.length - 1 && styles.buttonLast,
+                ),
+              }}
+              component={Link}
+              {...{ to: item.to } as any}
+            >
+              <item.icon className={styles.buttonIcon} />
+              {item.label}
+            </Button>
+          ));
+        }}
+      </Location>
+
+      <div className={styles.menuFill} />
+
+      <Button
+        classes={{
+          root: styles.buttonRoot,
+        }}
+        component="a"
+        href="mailto:2020-image@ml.cri.epita.fr"
+      >
+        <MailIcon className={styles.buttonIcon} />
+        Contact
+      </Button>
+    </div>
+    // <Tabs
+    //   indicatorColor="primary"
+    //   // Note that in the case no item matches, the first item will be
+    //   // selected by default.
+    //   value={
+    //     items.reduce((longestMatch, item) =>
+    //       location.pathname.includes(item.to) &&
+    //       item.to.length > longestMatch.to.length
+    //         ? item
+    //         : longestMatch,
+    //     ).to
+    //   }
+    // >
+    //   {items.map(item => (
+    //     <TabLink
+    //       key={item.to}
+    //       value={item.to}
+    //       label={item.label}
+    //       to={item.to}
+    //     />
+    //   ))}
+    // </Tabs>
   );
 }
 
@@ -88,11 +163,17 @@ function ListItemLink({ to, ...otherProps }: { to: string } & ListItemProps) {
   );
 }
 
-function ResponsiveMenu({ items }: { items: Array<MenuItem> }) {
+function ResponsiveMenu({
+  items,
+  onSelect,
+}: {
+  items: Array<MenuItem>;
+  onSelect: () => void;
+}) {
   return (
     <List>
       {items.map(item => (
-        <ListItemLink to={item.to} button key={item.to}>
+        <ListItemLink to={item.to} button key={item.to} onClick={onSelect}>
           <ListItemIcon>
             <item.icon />
           </ListItemIcon>
@@ -153,14 +234,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   topFill: {
     flexGrow: 1,
   },
-  contactButton: {
-    textTransform: "none",
-    fontWeight: "inherit",
-    alignSelf: "center",
-  },
-  contactIcon: {
-    marginRight: theme.spacing(1),
-  },
   menuIcon: {
     position: "absolute",
     left: theme.spacing(2),
@@ -210,7 +283,10 @@ export default function Header() {
                 onClose={() => setDrawerOpen(false)}
               >
                 <div tabIndex={0} role="button">
-                  <ResponsiveMenu items={menuItems} />
+                  <ResponsiveMenu
+                    onSelect={() => setDrawerOpen(false)}
+                    items={menuItems}
+                  />
                 </div>
               </Drawer>
             </>
@@ -236,24 +312,7 @@ export default function Header() {
           </Link>
         </div>
 
-        {!smallScreen && (
-          <div className={styles.menu}>
-            <Menu items={menuItems} />
-
-            <div className={styles.menuFill} />
-
-            <Button
-              color="primary"
-              classes={{ root: styles.contactButton }}
-              size="small"
-              component="a"
-              href="mailto:2020-image@ml.cri.epita.fr"
-            >
-              <MailIcon className={styles.contactIcon} />
-              Contact
-            </Button>
-          </div>
-        )}
+        {!smallScreen && <Menu items={menuItems} />}
       </Container>
     </header>
   );

@@ -12,6 +12,10 @@ import {
 import Hero from "@/components/Hero";
 import { makeStyles } from "@material-ui/styles";
 import ReactDOM from "react-dom";
+import Container from "@/components/Container";
+import { graphql, Link } from "gatsby";
+import { ClassPageQuery } from "./types/ClassPageQuery";
+import StudentGrid from "@/components/StudentGrid";
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero: {
@@ -37,9 +41,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   selectIcon: {
     color: "inherit",
   },
+  container: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
-export default function StudentsPage() {
+export default function ClassPage({
+  data,
+  pageContext,
+}: {
+  data: ClassPageQuery;
+  pageContext: { class: number };
+}) {
+  if (data.allStudent == null || data.allStudent.edges == null) {
+    throw new Error(`No students found for class ${pageContext.class}.`);
+  }
+
   const styles = useStyles();
   const labelRef = useRef<InputLabel>(null);
   const [labelWidth, setLabelWidth] = useState(0);
@@ -52,7 +69,7 @@ export default function StudentsPage() {
 
   return (
     <>
-      <Meta title="Étudiants" />
+      <Meta title={`Promotion ${pageContext.class}`} />
 
       <Hero className={styles.hero}>
         <div className={styles.heroContent}>
@@ -76,6 +93,31 @@ export default function StudentsPage() {
           </FormControl>
         </div>
       </Hero>
+
+      <Container className={styles.container}>
+        <StudentGrid
+          class={pageContext.class}
+          people={data.allStudent!.edges!.map(edge => edge!.node!)}
+        />
+      </Container>
     </>
   );
 }
+
+export const query = graphql`
+  query ClassPageQuery($class: Int!) {
+    allStudent(
+      filter: { fields: { class: { eq: $class } } }
+      sort: {
+        fields: [frontmatter___lastName, frontmatter___firstName]
+        order: [ASC, ASC]
+      }
+    ) {
+      edges {
+        node {
+          ...PersonFragment
+        }
+      }
+    }
+  }
+`;

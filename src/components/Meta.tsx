@@ -1,6 +1,6 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import Helmet from "react-helmet";
+import Helmet from "react-helmet-async";
 
 export default function Meta({ title }: { title: string }) {
   return (

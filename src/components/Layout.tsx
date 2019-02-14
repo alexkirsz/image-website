@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
-import Helmet from "react-helmet";
 import { makeStyles } from "@material-ui/styles";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Theme } from "@material-ui/core";
+import Helmet from "react-helmet-async";
 
 const useStyles = makeStyles((theme: Theme) => ({
   "@global": {
