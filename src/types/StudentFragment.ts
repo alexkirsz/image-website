@@ -2,15 +2,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: PersonFragment
+// GraphQL fragment: StudentFragment
 // ====================================================
 
-export interface PersonFragment_fields {
+export interface StudentFragment_fields {
   __typename: "StudentFields";
   slug: string | null;
 }
 
-export interface PersonFragment_frontmatter_picture_childImageSharp_fixed {
+export interface StudentFragment_frontmatter_picture_childImageSharp_fixed {
   __typename: "ImageSharpFixed";
   base64: string | null;
   width: number | null;
@@ -19,33 +19,33 @@ export interface PersonFragment_frontmatter_picture_childImageSharp_fixed {
   srcSet: string | null;
 }
 
-export interface PersonFragment_frontmatter_picture_childImageSharp {
+export interface StudentFragment_frontmatter_picture_childImageSharp {
   __typename: "ImageSharp";
-  fixed: PersonFragment_frontmatter_picture_childImageSharp_fixed | null;
+  fixed: StudentFragment_frontmatter_picture_childImageSharp_fixed | null;
 }
 
-export interface PersonFragment_frontmatter_picture {
+export interface StudentFragment_frontmatter_picture {
   __typename: "File";
   /**
    * The child of this node of type imageSharp
    */
-  childImageSharp: PersonFragment_frontmatter_picture_childImageSharp | null;
+  childImageSharp: StudentFragment_frontmatter_picture_childImageSharp | null;
 }
 
-export interface PersonFragment_frontmatter {
+export interface StudentFragment_frontmatter {
   __typename: "frontmatter_3";
   firstName: string | null;
   lastName: string | null;
   headline: string | null;
-  picture: PersonFragment_frontmatter_picture | null;
+  picture: StudentFragment_frontmatter_picture | null;
 }
 
-export interface PersonFragment {
+export interface StudentFragment {
   __typename: "Student";
   /**
    * The id of this node.
    */
   id: string;
-  fields: PersonFragment_fields | null;
-  frontmatter: PersonFragment_frontmatter | null;
+  fields: StudentFragment_fields | null;
+  frontmatter: StudentFragment_frontmatter | null;
 }
