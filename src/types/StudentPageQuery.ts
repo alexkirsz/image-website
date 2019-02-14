@@ -67,6 +67,7 @@ export interface StudentPageQuery_student_frontmatter {
   website: string | null;
   twitter: string | null;
   linkedin: string | null;
+  github: string | null;
   resume: StudentPageQuery_student_frontmatter_resume | null;
   picture: StudentPageQuery_student_frontmatter_picture | null;
   background: StudentPageQuery_student_frontmatter_background | null;

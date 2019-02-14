@@ -20,6 +20,7 @@ import AttachmentIcon from "@material-ui/icons/AttachmentTwoTone";
 import LaunchIcon from "@material-ui/icons/LaunchTwoTone";
 import Twitter from "mdi-material-ui/Twitter";
 import Linkedin from "mdi-material-ui/Linkedin";
+import GithubFace from "mdi-material-ui/GithubFace";
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero: {
@@ -184,6 +185,19 @@ export default function StudentPage({
                   </ListItem>
                 )}
 
+                {data.student.frontmatter.github && (
+                  <ListItem
+                    button
+                    component="a"
+                    {...{
+                      href: data.student.frontmatter.github,
+                    } as any}
+                  >
+                    <ListItemIcon>{<GithubFace />}</ListItemIcon>
+                    <ListItemText inset primary="Github" />
+                  </ListItem>
+                )}
+
                 {data.student.frontmatter.twitter && (
                   <ListItem
                     button
@@ -230,6 +244,7 @@ export const query = graphql`
         website
         twitter
         linkedin
+        github
         resume {
           publicURL
         }

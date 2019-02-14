@@ -41,8 +41,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   selectIcon: {
     color: "inherit",
   },
-  container: {
-    marginTop: theme.spacing(2),
+  background: {
+    flex: 1,
+    paddingTop: theme.spacing(2),
   },
 }));
 
@@ -94,12 +95,14 @@ export default function ClassPage({
         </div>
       </Hero>
 
-      <Container className={styles.container}>
-        <StudentGrid
-          class={pageContext.class}
-          people={data.allStudent!.edges!.map(edge => edge!.node!)}
-        />
-      </Container>
+      <div className={styles.background}>
+        <Container className={styles.container}>
+          <StudentGrid
+            class={pageContext.class}
+            people={data.allStudent!.edges!.map(edge => edge!.node!)}
+          />
+        </Container>
+      </div>
     </>
   );
 }
