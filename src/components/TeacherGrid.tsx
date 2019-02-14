@@ -46,8 +46,6 @@ export default function TeacherGrid({
 }) {
   const styles = useStyles();
 
-  console.log(teachers);
-
   return (
     <Grid container spacing={3}>
       {teachers.map(teacher => {
