@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   filler: {
     flexGrow: 1,
+    minWidth: theme.spacing(1),
   },
   headSpacer: {
     height: theme.spacing(1),

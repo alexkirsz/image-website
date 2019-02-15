@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundImage: `url("${require("@/images/diamonds_pattern.svg")}")`,
     backgroundSize: 80,
   },
+  hero2: {
+    flex: 1,
+    backgroundColor: theme.palette.grey[50],
+  },
   heroContent1: {
     minHeight: theme.spacing(28),
     paddingTop: theme.spacing(16),
@@ -65,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   geniuses: {
-    marginBottom: theme.spacing(6),
+    marginBottom: theme.spacing(4),
   },
 }));
 
@@ -94,72 +98,19 @@ export default function HomePage({ data }: { data: IndexQuery }) {
         </div>
       </Hero>
 
-      <Hero type="light">
+      <Hero type="light" className={styles.hero2}>
         <div className={styles.heroContent2}>
-          <Typography variant="h3" className={styles.geniuses}>
+          <Typography
+            variant="h3"
+            color="textSecondary"
+            className={styles.geniuses}
+          >
             Les grands esprits au volant
           </Typography>
 
           <TeacherGrid
             teachers={data.allTeacher!.edges!.map(edge => edge!.node!)}
           />
-          {/*
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Card elevation={0}>
-                <CardActionArea
-                  component="a"
-                  {...{
-                    href: "https://www.lrde.epita.fr/wiki/User:Elodie",
-                  } as any}
-                >
-                  <div className={styles.cardContent}>
-                    <Avatar
-                      src={require("@/images/elodie_puybareau.jpg")}
-                      className={styles.avatar}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5">
-                        Élodie Puybareau
-                      </Typography>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                      </Typography>
-                    </CardContent>
-                  </div>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Card elevation={0}>
-                <CardActionArea
-                  component="a"
-                  {...{
-                    href: "https://www.lrde.epita.fr/wiki/User:Gtochon",
-                  } as any}
-                >
-                  <div className={styles.cardContent}>
-                    <Avatar
-                      src={require("@/images/guillaume_tochon.jpg")}
-                      className={styles.avatar}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5">
-                        Guillaume Tochon
-                      </Typography>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                      </Typography>
-                    </CardContent>
-                  </div>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          </Grid> */}
         </div>
       </Hero>
     </>

@@ -28,13 +28,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     display: "flex",
-    alignItems: "flex-end",
-    flexWrap: "wrap",
+    alignItems: "flex-start",
+    flexWrap: "wrap-reverse",
+    justifyContent: "flex-end",
+    alignContent: "flex-start",
   },
-  filler: {
+  heroTitle: {
+    marginTop: theme.spacing(2),
     flexGrow: 1,
   },
   promotionInput: {
+    flexShrink: 0,
+    marginLeft: theme.spacing(2),
     width: 100,
   },
   selectIcon: {
@@ -42,6 +47,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   content: {
     flex: 1,
+    backgroundColor: theme.palette.grey[50],
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
@@ -74,7 +80,9 @@ export default function ClassPage({
 
       <Hero className={styles.hero}>
         <div className={styles.heroContent}>
-          <Typography variant="h3">Les étudiants</Typography>
+          <Typography variant="h3" classes={{ root: styles.heroTitle }}>
+            Les étudiants
+          </Typography>
 
           <div className={styles.filler} />
 
