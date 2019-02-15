@@ -11,6 +11,7 @@ const theme: ThemeOptions = {
     },
     primary: {
       main: lightBlue.A400,
+      contrastText: "white",
     },
     secondary: {
       main: pink.A400,

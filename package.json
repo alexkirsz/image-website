@@ -14,6 +14,7 @@
     "@types/node": "^10.12.23",
     "@types/react": "^16.8.2",
     "@types/react-dom": "^16.8.0",
+    "@types/react-headroom": "^2.2.1",
     "@types/react-helmet-async": "^0.0.2",
     "@types/react-jss": "^8.6.1",
     "apollo": "^2.5.0",
@@ -37,6 +38,7 @@
     "prettier": "^1.16.4",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "react-headroom": "github:tommyka/react-headroom#deploy",
     "react-helmet-async": "^0.2.0",
     "react-jss": "^8.6.1",
     "typescript": "^3.3.3"

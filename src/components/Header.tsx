@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/styles";
 import {
-  Tabs,
-  Tab,
   Theme,
   Button,
   ButtonBase,
@@ -27,6 +25,7 @@ import { unstable_useMediaQuery as useMediaQuery } from "@material-ui/core/useMe
 import { ListItemProps } from "@material-ui/core/ListItem";
 import classNames from "classnames";
 import color from "color";
+import Headroom from "react-headroom";
 
 type MenuItem = {
   label: React.ReactNode;
@@ -34,29 +33,9 @@ type MenuItem = {
   icon: React.ComponentType<{ className?: string }>;
 };
 
-const useTabStyles = makeStyles((theme: Theme) => ({
-  tab: {
-    textTransform: "none",
-    fontWeight: 400,
-  },
-}));
-
-function TabLink({ to, ...otherProps }: { to: string } & TabProps) {
-  const styles = useTabStyles();
-  return (
-    <Tab
-      {...otherProps}
-      classes={{ root: styles.tab }}
-      component={Link}
-      {...{ to } as any}
-    />
-  );
-}
-
 const useMenuButtonStyles = makeStyles((theme: Theme) => ({
   menuContainer: {
     display: "flex",
-    paddingBottom: theme.spacing(1),
   },
   menuFill: {
     flexGrow: 1,
@@ -132,28 +111,6 @@ function Menu({ items }: { items: Array<MenuItem> }) {
         Contact
       </Button>
     </div>
-    // <Tabs
-    //   indicatorColor="primary"
-    //   // Note that in the case no item matches, the first item will be
-    //   // selected by default.
-    //   value={
-    //     items.reduce((longestMatch, item) =>
-    //       location.pathname.includes(item.to) &&
-    //       item.to.length > longestMatch.to.length
-    //         ? item
-    //         : longestMatch,
-    //     ).to
-    //   }
-    // >
-    //   {items.map(item => (
-    //     <TabLink
-    //       key={item.to}
-    //       value={item.to}
-    //       label={item.label}
-    //       to={item.to}
-    //     />
-    //   ))}
-    // </Tabs>
   );
 }
 
@@ -163,6 +120,12 @@ function ListItemLink({ to, ...otherProps }: { to: string } & ListItemProps) {
   );
 }
 
+const useResponsiveMenuStyles = makeStyles({
+  root: {
+    width: 250,
+  },
+});
+
 function ResponsiveMenu({
   items,
   onSelect,
@@ -170,8 +133,10 @@ function ResponsiveMenu({
   items: Array<MenuItem>;
   onSelect: () => void;
 }) {
+  const styles = useResponsiveMenuStyles();
+
   return (
-    <List>
+    <List classes={{ root: styles.root }}>
       {items.map(item => (
         <ListItemLink to={item.to} button key={item.to} onClick={onSelect}>
           <ListItemIcon>
@@ -197,6 +162,37 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     backgroundColor: "white",
   },
+  smallScreen: {
+    display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+    },
+  },
+  bigScreen: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+    },
+  },
+  menuIcon: {
+    position: "absolute",
+    left: theme.spacing(1),
+  },
+  verticalSpacer: {
+    height: theme.spacing(2),
+  },
+  headerContainer: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "stretch",
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
+      alignItems: "center",
+    },
+  },
   menu: {
     display: "flex",
   },
@@ -205,10 +201,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   top: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
-    justifyContent: "center",
   },
   logoContainer: {
     borderRadius: theme.shape.borderRadius,
@@ -234,10 +228,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   topFill: {
     flexGrow: 1,
   },
-  menuIcon: {
-    position: "absolute",
-    left: theme.spacing(2),
-  },
 }));
 
 const menuItems: Array<MenuItem> = [
@@ -260,28 +250,22 @@ const menuItems: Array<MenuItem> = [
 
 export default function Header() {
   const styles = useStyles();
-  const theme = useTheme<Theme>();
-  const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <header className={styles.header}>
-      <Container>
-        <div className={styles.top}>
-          {smallScreen && (
-            <>
+    <>
+      <div className={styles.smallScreen}>
+        <Headroom>
+          <header className={styles.header}>
+            <Container className={styles.headerContainer}>
               <IconButton
-                className={styles.menuIcon}
                 onClick={() => setDrawerOpen(true)}
+                className={styles.menuIcon}
               >
                 <MenuIcon />
               </IconButton>
 
-              <Drawer
-                anchor="bottom"
-                open={drawerOpen}
-                onClose={() => setDrawerOpen(false)}
-              >
+              <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
                 <div tabIndex={0} role="button">
                   <ResponsiveMenu
                     onSelect={() => setDrawerOpen(false)}
@@ -289,31 +273,58 @@ export default function Header() {
                   />
                 </div>
               </Drawer>
-            </>
-          )}
 
-          <Link to="/">
-            <ButtonBase classes={{ root: styles.logoContainer }}>
-              <img
-                src={require("@/images/logo_clear.svg")}
-                alt="Logo"
-                className={styles.logo}
-              />
-              {/* <AnimatedLogo className={styles.logo} /> */}
+              <Link to="/">
+                <ButtonBase classes={{ root: styles.logoContainer }}>
+                  <img
+                    src={require("@/images/logo_clear.svg")}
+                    alt="Logo"
+                    className={styles.logo}
+                  />
 
-              <div className={styles.logoSpacer} />
+                  <div className={styles.logoSpacer} />
 
-              <img
-                src={require("@/images/logo_text.svg")}
-                alt="IMAGE"
-                className={styles.logoText}
-              />
-            </ButtonBase>
-          </Link>
-        </div>
+                  <img
+                    src={require("@/images/logo_text.svg")}
+                    alt="IMAGE"
+                    className={styles.logoText}
+                  />
+                </ButtonBase>
+              </Link>
+            </Container>
+          </header>
+        </Headroom>
+      </div>
 
-        {!smallScreen && <Menu items={menuItems} />}
-      </Container>
-    </header>
+      <div className={styles.bigScreen}>
+        <header className={styles.header}>
+          <Container className={styles.headerContainer}>
+            <div className={styles.top}>
+              <Link to="/">
+                <ButtonBase classes={{ root: styles.logoContainer }}>
+                  <img
+                    src={require("@/images/logo_clear.svg")}
+                    alt="Logo"
+                    className={styles.logo}
+                  />
+
+                  <div className={styles.logoSpacer} />
+
+                  <img
+                    src={require("@/images/logo_text.svg")}
+                    alt="IMAGE"
+                    className={styles.logoText}
+                  />
+                </ButtonBase>
+              </Link>
+            </div>
+
+            <div className={styles.verticalSpacer} />
+
+            <Menu items={menuItems} />
+          </Container>
+        </header>
+      </div>
+    </>
   );
 }
