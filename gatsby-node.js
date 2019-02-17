@@ -167,7 +167,9 @@ exports.onCreatePage = ({ page, actions }) => {
       ...page,
       ...additionalProps,
       // Add locale prefix, remove trailing slash.
-      path: `${getLocalePrefix(locale)}${page.path.replace(/\/$/, "")}`,
+      path: `${getLocalePrefix(locale)}${
+        page.path === "/" ? "/" : page.path.replace(/\/$/, "")
+      }`,
       context: {
         locale,
       },
