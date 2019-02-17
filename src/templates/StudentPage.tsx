@@ -189,7 +189,10 @@ export default function StudentPage({
                     } as any}
                   >
                     <ListItemIcon>{<LaunchIcon />}</ListItemIcon>
-                    <ListItemText inset primary="Site web" />
+                    <ListItemText
+                      inset
+                      primary={<FormattedMessage id="student_website" />}
+                    />
                   </ListItem>
                 )}
 
