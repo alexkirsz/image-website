@@ -250,14 +250,14 @@ export const query = graphql`
         }
         picture {
           childImageSharp {
-            fixed(width: 192, height: 192) {
-              ...GatsbyImageSharpFixed
+            fixed(width: 192, height: 192, quality: 100) {
+              ...GatsbyImageSharpFixed_withWebp
             }
           }
         }
         background {
           childImageSharp {
-            fluid(maxWidth: 1920) {
+            fluid(maxWidth: 1920, quality: 75) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
