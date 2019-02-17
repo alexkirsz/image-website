@@ -132,16 +132,34 @@ exports.setFieldsOnGraphQLNodeType = ({ type }) => {
 };
 
 exports.onCreatePage = ({ page, actions }) => {
-  const { createPage, deletePage } = actions;
+  const { createPage, createRedirect, deletePage } = actions;
 
   deletePage(page);
 
-  for (const locale of locales) {
+  // We want to declare the more specific redirects *before* the less specific
+  // ones, so that they are correctly picked up in the generated _redirects
+  // file. For instance:
+  // /en/* => /en/404/
+  // should go before
+  // /* => /404/
+  const localesSortedByInverseSpecificity = [...locales];
+  localesSortedByInverseSpecificity.sort((a, b) => {
+    if (getLocalePrefix(a).indexOf(getLocalePrefix(b)) === 0) {
+      return -1;
+    } else if (getLocalePrefix(b).indexOf(getLocalePrefix(a)) === 0) {
+      return 1;
+    }
+    return 0;
+  });
+
+  for (const locale of localesSortedByInverseSpecificity) {
     let additionalProps = {};
     if (page.path.match(/\/404\/$/)) {
-      additionalProps = {
-        matchPath: `${getLocalePrefix(locale)}/*`,
-      };
+      createRedirect({
+        fromPath: `${getLocalePrefix(locale)}/*`,
+        toPath: `${getLocalePrefix(locale)}${page.path}`,
+        statusCode: 404,
+      });
     }
 
     createPage({
