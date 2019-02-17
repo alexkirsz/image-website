@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  Card,
-  CardActionArea,
-  Typography,
-  Theme,
-  IconButton,
-} from "@material-ui/core";
-import { Link } from "gatsby";
+import { Card, CardActionArea, Typography, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import MoreIcon from "@material-ui/icons/MoreHorizTwoTone";
+import Link from "@/components/Link";
 
 const useStyles = makeStyles((theme: Theme) => ({
   actionArea: {

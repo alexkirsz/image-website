@@ -5,11 +5,6 @@
 // GraphQL fragment: StudentFragment
 // ====================================================
 
-export interface StudentFragment_fields {
-  __typename: "StudentFields";
-  slug: string | null;
-}
-
 export interface StudentFragment_frontmatter_picture_childImageSharp_fixed {
   __typename: "ImageSharpFixed";
   base64: string | null;
@@ -17,6 +12,8 @@ export interface StudentFragment_frontmatter_picture_childImageSharp_fixed {
   height: number | null;
   src: string | null;
   srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
 }
 
 export interface StudentFragment_frontmatter_picture_childImageSharp {
@@ -46,6 +43,6 @@ export interface StudentFragment {
    * The id of this node.
    */
   id: string;
-  fields: StudentFragment_fields | null;
+  slug: string | null;
   frontmatter: StudentFragment_frontmatter | null;
 }

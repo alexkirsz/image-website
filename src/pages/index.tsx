@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Meta from "@/components/Meta";
 import { Typography, Theme } from "@material-ui/core";
 import Hero from "@/components/Hero";
@@ -7,6 +7,8 @@ import AnimatedLogo from "@/components/AnimatedLogo";
 import { graphql } from "gatsby";
 import { IndexQuery } from "@/types/IndexQuery";
 import TeacherGrid from "@/components/TeacherGrid";
+import { FormattedMessage } from "react-intl";
+import { IntlContext } from "@/utils/IntlContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero1: {
@@ -75,10 +77,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function HomePage({ data }: { data: IndexQuery }) {
   const styles = useStyles();
+  const intl = useContext(IntlContext);
+
+  const teachers = data.allTeacher != null ? data.allTeacher.edges! : [];
 
   return (
     <>
-      <Meta title="Accueil" />
+      <Meta title={intl.formatMessage({ id: "index_meta_title" })} />
 
       <Hero type="light" className={styles.hero1}>
         <div className={styles.heroContent1}>
@@ -88,11 +93,10 @@ export default function HomePage({ data }: { data: IndexQuery }) {
 
           <div className={styles.description}>
             <Typography variant="h2" gutterBottom>
-              La meilleure majeure
+              <FormattedMessage id="index_hero_title" />
             </Typography>
             <Typography variant="h5" color="textSecondary">
-              Mais ce serait sympa de trouver un autre nom, parce qu'IMAGE c'est
-              vachement générique quand même.
+              <FormattedMessage id="index_hero_subtitle" />
             </Typography>
           </div>
         </div>
@@ -105,12 +109,10 @@ export default function HomePage({ data }: { data: IndexQuery }) {
             color="textSecondary"
             className={styles.geniuses}
           >
-            Les grands esprits au volant
+            <FormattedMessage id="index_teachers_title" />
           </Typography>
 
-          <TeacherGrid
-            teachers={data.allTeacher!.edges!.map(edge => edge!.node!)}
-          />
+          <TeacherGrid teachers={teachers.map(edge => edge!.node!)} />
         </div>
       </Hero>
     </>
@@ -118,8 +120,9 @@ export default function HomePage({ data }: { data: IndexQuery }) {
 }
 
 export const query = graphql`
-  query IndexQuery {
+  query IndexQuery($locale: String!) {
     allTeacher(
+      filter: { locale: { eq: $locale } }
       sort: {
         fields: [frontmatter___lastName, frontmatter___firstName]
         order: [ASC, ASC]

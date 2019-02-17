@@ -12,6 +12,8 @@ export interface IndexQuery_allTeacher_edges_node_frontmatter_picture_childImage
   height: number | null;
   src: string | null;
   srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
 }
 
 export interface IndexQuery_allTeacher_edges_node_frontmatter_picture_childImageSharp {
@@ -66,4 +68,8 @@ export interface IndexQuery {
    * Connection to all Teacher nodes
    */
   allTeacher: IndexQuery_allTeacher | null;
+}
+
+export interface IndexQueryVariables {
+  locale: string;
 }

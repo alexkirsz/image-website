@@ -10,7 +10,10 @@ import {
 import { createMuiTheme, CssBaseline } from "@material-ui/core";
 import theme from "@/theme";
 import Layout from "@/components/Layout";
+import LocaleContext from "@/locale";
 import { HelmetProvider } from "react-helmet-async";
+import { IntlContextProvider } from "@/utils/IntlContext";
+import LocaleSetup from "@/components/LocaleSetup";
 
 const sheetsRegistryMap = new Map();
 const helmetContextMap = new Map();
@@ -41,8 +44,16 @@ export const wrapRootElement = ({ element, pathname }) => {
   );
 };
 
-export const wrapPageElement = ({ element }) => {
-  return <Layout>{element}</Layout>;
+export const wrapPageElement = ({ element, props }) => {
+  return (
+    <LocaleContext.Provider value={props.pageContext.locale}>
+      <LocaleSetup>
+        <IntlContextProvider>
+          <Layout>{element}</Layout>
+        </IntlContextProvider>
+      </LocaleSetup>
+    </LocaleContext.Provider>
+  );
 };
 
 export const onRenderBody = ({

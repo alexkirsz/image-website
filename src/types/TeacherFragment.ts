@@ -12,6 +12,8 @@ export interface TeacherFragment_frontmatter_picture_childImageSharp_fixed {
   height: number | null;
   src: string | null;
   srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
 }
 
 export interface TeacherFragment_frontmatter_picture_childImageSharp {

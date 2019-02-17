@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Typography, Theme, Link } from "@material-ui/core";
 import Container from "@/components/Container";
+import { FormattedMessage } from "react-intl";
 
 const useStyles = makeStyles((theme: Theme) => ({
   footer: {
@@ -26,7 +27,7 @@ export default function Footer() {
       <Container>
         <div className={styles.footerContent}>
           <Typography variant="caption" color="textSecondary">
-            © Étudiants IMAGE 2020
+            <FormattedMessage id="footer_copyright" />
           </Typography>
 
           <div className={styles.fill} />

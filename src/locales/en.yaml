@@ -1,0 +1,25 @@
+menu_home: Home
+menu_curriculum: Curriculum
+menu_students: Students
+menu_contact: Contact
+
+index_meta_title: Home
+index_hero_title: The best specialization
+index_hero_subtitle: Although we might want to look for a more specific name.
+index_teachers_title: Our glorious leaders
+
+curriculum_meta_title: Curriculum
+
+class_meta_title: Class of {class}
+class_title: Students
+class_class: Class
+
+student_about: About
+student_useful_links: Useful links
+student_resume: Resume
+
+footer_copyright: © IMAGE Class of 2020
+
+404_meta_title: Page not found
+404_title: Page not found
+404_subtitle: Either this page does not exist yet, or it has been deleted recently.

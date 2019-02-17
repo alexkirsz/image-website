@@ -5,11 +5,6 @@
 // GraphQL query operation: ClassPageQuery
 // ====================================================
 
-export interface ClassPageQuery_allStudent_edges_node_fields {
-  __typename: "StudentFields";
-  slug: string | null;
-}
-
 export interface ClassPageQuery_allStudent_edges_node_frontmatter_picture_childImageSharp_fixed {
   __typename: "ImageSharpFixed";
   base64: string | null;
@@ -17,6 +12,8 @@ export interface ClassPageQuery_allStudent_edges_node_frontmatter_picture_childI
   height: number | null;
   src: string | null;
   srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
 }
 
 export interface ClassPageQuery_allStudent_edges_node_frontmatter_picture_childImageSharp {
@@ -46,7 +43,7 @@ export interface ClassPageQuery_allStudent_edges_node {
    * The id of this node.
    */
   id: string;
-  fields: ClassPageQuery_allStudent_edges_node_fields | null;
+  slug: string | null;
   frontmatter: ClassPageQuery_allStudent_edges_node_frontmatter | null;
 }
 
@@ -75,4 +72,5 @@ export interface ClassPageQuery {
 
 export interface ClassPageQueryVariables {
   class: number;
+  locale: string;
 }

@@ -22,6 +22,7 @@ import Twitter from "mdi-material-ui/Twitter";
 import Linkedin from "mdi-material-ui/Linkedin";
 import GithubFace from "mdi-material-ui/GithubFace";
 import Picture from "@/components/Picture";
+import { FormattedMessage } from "react-intl";
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero: {
@@ -88,7 +89,11 @@ export default function StudentPage({
 
   return (
     <>
-      <Meta title={data.student.frontmatter.firstName} />
+      <Meta
+        title={`${data.student.frontmatter.firstName} ${
+          data.student.frontmatter.lastName
+        }`}
+      />
 
       <Hero
         className={styles.hero}
@@ -140,7 +145,7 @@ export default function StudentPage({
           <Grid container spacing={2}>
             <Grid item xs={12} md={9}>
               <Typography variant="subtitle2" color="textSecondary">
-                À propos
+                <FormattedMessage id="student_about" />
               </Typography>
               <Typography
                 variant="body1"
@@ -156,7 +161,7 @@ export default function StudentPage({
                 color="textSecondary"
                 gutterBottom
               >
-                Liens utiles
+                <FormattedMessage id="student_useful_links" />
               </Typography>
               <List>
                 {data.student.frontmatter.resume && (
@@ -168,7 +173,10 @@ export default function StudentPage({
                     } as any}
                   >
                     <ListItemIcon>{<AttachmentIcon />}</ListItemIcon>
-                    <ListItemText inset primary="CV" />
+                    <ListItemText
+                      inset
+                      primary={<FormattedMessage id="student_resume" />}
+                    />
                   </ListItem>
                 )}
 

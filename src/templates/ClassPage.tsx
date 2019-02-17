@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useLayoutEffect, useState, useContext } from "react";
 import Meta from "@/components/Meta";
 import {
   Typography,
@@ -16,6 +16,8 @@ import Container from "@/components/Container";
 import { graphql, Link } from "gatsby";
 import { ClassPageQuery } from "@/types/ClassPageQuery";
 import StudentGrid from "@/components/StudentGrid";
+import { IntlContext } from "@/utils/IntlContext";
+import { FormattedMessage } from "react-intl";
 
 const useStyles = makeStyles((theme: Theme) => ({
   hero: {
@@ -60,9 +62,8 @@ export default function ClassPage({
   data: ClassPageQuery;
   pageContext: { class: number };
 }) {
-  if (data.allStudent == null || data.allStudent.edges == null) {
-    throw new Error(`No students found for class ${pageContext.class}.`);
-  }
+  const intl = useContext(IntlContext);
+  const students = data.allStudent != null ? data.allStudent.edges! : [];
 
   const styles = useStyles();
   const labelRef = useRef<InputLabel>(null);
@@ -76,19 +77,22 @@ export default function ClassPage({
 
   return (
     <>
-      <Meta title={`Promotion ${pageContext.class}`} />
+      <Meta
+        title={intl.formatMessage(
+          { id: "class_meta_title" },
+          { class: pageContext.class },
+        )}
+      />
 
       <Hero className={styles.hero}>
         <div className={styles.heroContent}>
           <Typography variant="h3" classes={{ root: styles.heroTitle }}>
-            Les étudiants
+            <FormattedMessage id="class_title" />
           </Typography>
-
-          <div className={styles.filler} />
 
           <FormControl variant="outlined" className={styles.promotionInput}>
             <InputLabel htmlFor="promotion" ref={labelRef}>
-              Promotion
+              <FormattedMessage id="class_class" />
             </InputLabel>
 
             <Select
@@ -107,7 +111,7 @@ export default function ClassPage({
         <Container>
           <StudentGrid
             class={pageContext.class}
-            people={data.allStudent!.edges!.map(edge => edge!.node!)}
+            people={students.map(edge => edge!.node!)}
           />
         </Container>
       </div>
@@ -116,9 +120,9 @@ export default function ClassPage({
 }
 
 export const query = graphql`
-  query ClassPageQuery($class: Int!) {
+  query ClassPageQuery($class: Int!, $locale: String!) {
     allStudent(
-      filter: { fields: { class: { eq: $class } } }
+      filter: { class: { eq: $class }, locale: { eq: $locale } }
       sort: {
         fields: [frontmatter___lastName, frontmatter___firstName]
         order: [ASC, ASC]

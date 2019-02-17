@@ -16,6 +16,7 @@
     "@types/react-dom": "^16.8.0",
     "@types/react-headroom": "^2.2.1",
     "@types/react-helmet-async": "^0.0.2",
+    "@types/react-intl": "^2.3.17",
     "@types/react-jss": "^8.6.1",
     "apollo": "^2.5.0",
     "classnames": "^2.2.6",
@@ -27,6 +28,7 @@
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-extract-schema": "^0.0.5",
     "gatsby-plugin-manifest": "^2.0.17",
+    "gatsby-plugin-netlify": "^2.0.11",
     "gatsby-plugin-sharp": "^2.0.20",
     "gatsby-plugin-typescript": "^2.0.7",
     "gatsby-source-filesystem": "^2.0.20",
@@ -34,14 +36,15 @@
     "gatsby-transformer-yaml": "^2.1.8",
     "jss": "^9.8.7",
     "mdi-material-ui": "^5.9.0",
-    "normalize.css": "^8.0.1",
     "prettier": "^1.16.4",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-headroom": "github:tommyka/react-headroom#deploy",
     "react-helmet-async": "^0.2.0",
+    "react-intl": "^2.8.0",
     "react-jss": "^8.6.1",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.3",
+    "yaml-loader": "^0.5.0"
   },
   "license": "MIT",
   "scripts": {

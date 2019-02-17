@@ -28,7 +28,7 @@ export default function PeopleGrid({
           <Grid key={person.id} item xs={12} sm={6} md={4}>
             <PersonCard
               className={styles.card}
-              to={`/students/${class_}/${person.fields!.slug!}`}
+              to={`/students/${class_}/${person.slug!}`}
               picture={
                 <Picture
                   picture={person.frontmatter!.picture!.childImageSharp!.fixed!}
@@ -48,9 +48,7 @@ export default function PeopleGrid({
 export const query = graphql`
   fragment StudentFragment on Student {
     id
-    fields {
-      slug
-    }
+    slug
     frontmatter {
       firstName
       lastName

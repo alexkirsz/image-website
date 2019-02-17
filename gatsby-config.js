@@ -2,6 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `IMAGE`,
     description: `Le site web de la majeure IMAGE d'EPITA.`,
+    defaultLocale: "fr",
+    locales: ["fr", "en"],
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -59,6 +61,9 @@ module.exports = {
       options: {
         dest: `${__dirname}/schema.json`,
       },
+    },
+    {
+      resolve: "gatsby-plugin-netlify",
     },
   ],
 };

@@ -2,7 +2,7 @@
 firstName: Alexandre
 lastName: Kirszenberg
 picture: ./picture.png
-headline: Recherche un stage en Traitement d'Image et Machine Learning.
+headline: Looking for an internship in Image Processing and Machine Learning.
 background: ./background.jpg
 resume: ./resume-2019-02-13.pdf
 theme: dark
@@ -13,4 +13,4 @@ twitter: https://twitter.com/alexkirsz
 linkedin: https://www.linkedin.com/in/alexandre-kirszenberg/
 ---
 
-Description en français.
+English description.

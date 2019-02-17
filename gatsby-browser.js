@@ -9,7 +9,10 @@ import {
 import { createMuiTheme, CssBaseline } from "@material-ui/core";
 import theme from "@/theme";
 import Layout from "@/components/Layout";
+import LocaleContext from "@/locale";
+import { IntlContextProvider } from "@/utils/IntlContext";
 import { HelmetProvider } from "react-helmet-async";
+import LocaleSetup from "@/components/LocaleSetup";
 
 // Remove the server-side injected CSS.
 export const onInitialClientRender = () => {
@@ -39,6 +42,14 @@ export const wrapRootElement = ({ element }) => {
   );
 };
 
-export const wrapPageElement = ({ element }) => {
-  return <Layout>{element}</Layout>;
+export const wrapPageElement = ({ element, props }) => {
+  return (
+    <LocaleContext.Provider value={props.pageContext.locale}>
+      <LocaleSetup>
+        <IntlContextProvider>
+          <Layout>{element}</Layout>
+        </IntlContextProvider>
+      </LocaleSetup>
+    </LocaleContext.Provider>
+  );
 };

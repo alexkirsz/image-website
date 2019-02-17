@@ -1,0 +1,25 @@
+menu_home: Accueil
+menu_curriculum: Le programme
+menu_students: Les étudiants
+menu_contact: Contact
+
+index_meta_title: Accueil
+index_hero_title: La meilleure majeure
+index_hero_subtitle: Mais ce serait sympa de trouver un autre nom, parce qu'IMAGE c'est vachement générique quand même.
+index_teachers_title: Les grands esprits au volant
+
+curriculum_meta_title: Le programme
+
+class_meta_title: Promotion {class}
+class_title: Les étudiants
+class_class: Promotion
+
+student_about: À propos
+student_useful_links: Liens utiles
+student_resume: CV
+
+footer_copyright: © Étudiants IMAGE 2020
+
+404_meta_title: Page non trouvée
+404_title: Page non trouvée
+404_subtitle: Cette page n'existe peut-être pas encore, ou a été supprimée récemment.

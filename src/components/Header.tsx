@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/styles";
+import React, { useState, useContext } from "react";
+import { makeStyles } from "@material-ui/styles";
 import {
   Theme,
   Button,
@@ -17,21 +17,79 @@ import MenuIcon from "@material-ui/icons/MenuTwoTone";
 import PeopleIcon from "@material-ui/icons/PeopleTwoTone";
 import HomeIcon from "@material-ui/icons/HomeTwoTone";
 import ClassIcon from "@material-ui/icons/ClassTwoTone";
-import { Link } from "gatsby";
-import { TabProps } from "@material-ui/core/Tab";
 import { Location } from "@reach/router";
 import Container from "@/components/Container";
-import { unstable_useMediaQuery as useMediaQuery } from "@material-ui/core/useMediaQuery";
-import { ListItemProps } from "@material-ui/core/ListItem";
 import classNames from "classnames";
 import color from "color";
 import Headroom from "react-headroom";
+import Link from "@/components/Link";
+import LocaleContext from "@/locale";
+import {
+  useStaticQuery,
+  graphql,
+  Link as GatsbyLink,
+  GatsbyLinkProps,
+} from "gatsby";
+import getLocalePrefix from "@/utils/getLocalePrefix";
+import { FormattedMessage } from "react-intl";
+import { LocaleSwitchQuery } from "@/types/LocaleSwitchQuery";
+import { ListItemProps } from "@material-ui/core/ListItem";
 
 type MenuItem = {
   label: React.ReactNode;
   to: string;
   icon: React.ComponentType<{ className?: string }>;
 };
+
+const useLocaleSwitchStyles = makeStyles({
+  flag: {
+    width: "1em",
+    height: "1em",
+    lineHeight: "1.2em",
+    margin: "-0.2em",
+  },
+});
+
+function LocaleSwitchLink<TState>(props: GatsbyLinkProps<TState>) {
+  const locale = useContext(LocaleContext);
+  const data = useStaticQuery<LocaleSwitchQuery>(graphql`
+    query LocaleSwitchQuery {
+      site {
+        siteMetadata {
+          defaultLocale
+        }
+      }
+    }
+  `);
+  const styles = useLocaleSwitchStyles();
+
+  const otherLocale = locale === "fr" ? "en" : "fr";
+  const defaultLocale = data.site!.siteMetadata!.defaultLocale!;
+  const newPrefix = getLocalePrefix(otherLocale, defaultLocale);
+  const prevPrefix = getLocalePrefix(locale, defaultLocale);
+  const flags = {
+    en: "🇬🇧",
+    fr: "🇫🇷",
+  };
+
+  return (
+    <Location>
+      {({ location }) => (
+        <GatsbyLink
+          {...props as any}
+          to={
+            newPrefix +
+            (location.pathname.indexOf(prevPrefix) === 0
+              ? location.pathname.slice(prevPrefix.length)
+              : location.pathname)
+          }
+        >
+          <div className={styles.flag}>{flags[otherLocale]}</div>
+        </GatsbyLink>
+      )}
+    </Location>
+  );
+}
 
 const useMenuButtonStyles = makeStyles((theme: Theme) => ({
   menuContainer: {
@@ -50,6 +108,9 @@ const useMenuButtonStyles = makeStyles((theme: Theme) => ({
         .alpha(0.08)
         .toString(),
     },
+    "&:last-child": {
+      marginRight: 0,
+    },
   },
   buttonIcon: {
     marginRight: theme.spacing(1),
@@ -61,6 +122,11 @@ const useMenuButtonStyles = makeStyles((theme: Theme) => ({
     boxShadow: `0px 0px 0px 1px ${color(theme.palette.primary.dark).alpha(
       0.25,
     )}`,
+  },
+  flag: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 }));
 
@@ -108,8 +174,16 @@ function Menu({ items }: { items: Array<MenuItem> }) {
         href="mailto:2020-image@ml.cri.epita.fr"
       >
         <MailIcon className={styles.buttonIcon} />
-        Contact
+        <FormattedMessage id="menu_contact" />
       </Button>
+
+      <IconButton
+        classes={{
+          root: classNames(styles.buttonRoot, styles.flag),
+        }}
+        // Issue with MUI's Typescript Defs.
+        {...{ component: LocaleSwitchLink }}
+      />
     </div>
   );
 }
@@ -150,7 +224,7 @@ function ResponsiveMenu({
         <ListItemIcon>
           <MailIcon />
         </ListItemIcon>
-        <ListItemText primary="Contact" />
+        <ListItemText primary={<FormattedMessage id="menu_contact" />} />
       </ListItem>
     </List>
   );
@@ -244,17 +318,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const menuItems: Array<MenuItem> = [
   {
-    label: "Accueil",
+    label: <FormattedMessage id="menu_home" />,
     to: "/",
     icon: HomeIcon,
   },
   {
-    label: "Le programme",
+    label: <FormattedMessage id="menu_curriculum" />,
     to: "/curriculum",
     icon: ClassIcon,
   },
   {
-    label: "Les étudiants",
+    label: <FormattedMessage id="menu_students" />,
     to: "/students",
     icon: PeopleIcon,
   },
