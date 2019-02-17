@@ -155,9 +155,10 @@ exports.onCreatePage = ({ page, actions }) => {
   for (const locale of localesSortedByInverseSpecificity) {
     let additionalProps = {};
     if (page.path.match(/\/404\/$/)) {
+      additionalProps.matchPath = `${getLocalePrefix(locale)}/*`;
       createRedirect({
         fromPath: `${getLocalePrefix(locale)}/*`,
-        toPath: `${getLocalePrefix(locale)}${page.path}`,
+        toPath: `${getLocalePrefix(locale)}${page.path}index.html`,
         statusCode: 404,
       });
     }
