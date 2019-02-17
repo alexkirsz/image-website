@@ -79,7 +79,6 @@ export default function Menu({ items }: { items: Array<MenuItem> }) {
             location.pathname.indexOf(prefix) === 0
               ? location.pathname.slice(prefix.length)
               : location.pathname;
-          console.log(prefix, location.pathname, pathname, items);
           const activeMenuButton = items.reduce((longestMatch, item) =>
             pathname.includes(item.to) &&
             item.to.length > longestMatch.to.length
