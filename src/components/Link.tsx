@@ -27,6 +27,9 @@ export default function Link<TState>({
     locale,
     data.site!.siteMetadata!.defaultLocale!,
   );
+  const prefixedPathname = `${prefix}${to}`;
+  const pathname =
+    prefixedPathname === "/" ? "/" : prefixedPathname.replace(/\/$/, "");
   // Gatsby's TS definitions leave much to be desired.
-  return <GatsbyLink {...otherProps as any} to={`${prefix}${to}`} />;
+  return <GatsbyLink {...otherProps as any} to={pathname} />;
 }

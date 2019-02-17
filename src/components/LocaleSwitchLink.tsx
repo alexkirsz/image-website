@@ -43,22 +43,22 @@ export default function LocaleSwitchLink<TState>(
     en: "🇬🇧",
     fr: "🇫🇷",
   };
-
   return (
     <Location>
-      {({ location }) => (
-        <GatsbyLink
-          {...props as any}
-          to={
-            newPrefix +
-            (location.pathname.indexOf(prevPrefix) === 0
-              ? location.pathname.slice(prevPrefix.length)
-              : location.pathname)
-          }
-        >
-          <div className={styles.flag}>{flags[otherLocale]}</div>
-        </GatsbyLink>
-      )}
+      {({ location }) => {
+        const unprefixedPathname =
+          location.pathname.indexOf(prevPrefix) === 0
+            ? location.pathname.slice(prevPrefix.length)
+            : location.pathname;
+        const nextPathname = newPrefix + unprefixedPathname;
+        const pathname =
+          nextPathname === "/" ? "/" : nextPathname.replace(/\/$/, "");
+        return (
+          <GatsbyLink {...props as any} to={pathname}>
+            <div className={styles.flag}>{flags[otherLocale]}</div>
+          </GatsbyLink>
+        );
+      }}
     </Location>
   );
 }
