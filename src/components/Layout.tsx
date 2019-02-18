@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   root: {
     minHeight: "100vh",
-    minWidth: "100vw",
     display: "flex",
     flexDirection: "column",
   },
