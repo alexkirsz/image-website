@@ -9,7 +9,7 @@ Ce site utilise le générateur de site statique [Gatsby](https://www.gatsbyjs.o
 git clone https://gitlab.com/epita-image/website/website.git
 cd website
 
-# Installe toutes les dépendences dans le dossier node_modules
+# Installe toutes les dépendances dans le dossier node_modules
 yarn
 
 # Lance une version du site en local
