@@ -33,6 +33,17 @@ module.exports = {
       options: {
         filter: node => node.sourceInstanceName === "students",
         type: "Student",
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1400,
+              quality: 80,
+              withWebp: true,
+            },
+          },
+          "gatsby-remark-copy-linked-files",
+        ],
       },
     },
     {
@@ -40,6 +51,17 @@ module.exports = {
       options: {
         filter: node => node.sourceInstanceName === "teachers",
         type: "Teacher",
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1400,
+              quality: 80,
+              withWebp: true,
+            },
+          },
+          "gatsby-remark-copy-linked-files",
+        ],
       },
     },
     `gatsby-transformer-sharp`,
