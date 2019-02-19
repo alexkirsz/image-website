@@ -2,7 +2,7 @@
 
 Pour créer une page étudiant, crée un dossier au chemin `people/students/{promo}/{prenom-nom}`. Ce dossier doit contenir un fichier `about.md`, qui contient toutes les informations à afficher sur ta page étudiant.
 
-[Voici un exemple de fichier `about.md`](people/students/2020/alexandre-kirszenberg/about.md), qui décrit la page utilisateur https://image-epita.netlify.com/students/2020/alexandre-kirszenberg.
+[Voici un exemple de fichier `about.md`](../people/students/2020/alexandre-kirszenberg/about.md), qui décrit la page utilisateur https://image-epita.netlify.com/students/2020/alexandre-kirszenberg.
 
 Une fois tes modifications effectuées, crée une [Merge Request](https://gitlab.com/epita-image/website/website/merge_requests/new) pour les publier sur le site. Pas besoin d'attendre que ta MR soit acceptée : une version du site temporaire sera déployée instantanément et son lien publié sur ta MR pour que tu puisses visualiser tes changements.
 
